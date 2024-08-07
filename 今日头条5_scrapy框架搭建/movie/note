@@ -1,0 +1,52 @@
+更新版
+
+scrapy基本使用
+- 创建一个工程：   scrapy startproject moviePro
+- cd xxxPro
+- 在spiders子目录中创建一个爬虫文件
+    -scrapy genspider Jinritoutiao www.xxx.com
+- 执行工程：
+    - scrapy crawl Jinritoutiao
+创建crawlspider文件：在工程xxxPro文件目录下：   scrapy genspider -t crawl movie www.xxx.com
+
+用到中间件——需要打开setting里的
+    DOWNLOADER_MIDDLEWARES = {
+        "moviePro.middlewares.MovieproDownloaderMiddleware": 543,
+    }
+
+
+http://localhost:62485/pachong/%E5%86%9B%E4%BA%8B%E8%A7%86%E9%A2%91%E4%BB%A3%E7%A0%81/bilibili/%E5%86%9B%E4%BA%8B0.html?
+
+
+
+
+
+
+
+
+# 9.18可加功能——1.当url有blob要从script里找json串，转换后得到真实url（如果不行可以sele在线json解析网页得到返回数据
+            ——2.增加全站数据爬取功能（多页遍历）
+            ——3.增量式爬虫
+
+
+
+https://so.toutiao.com/search?dvpf=pc&source=pagination&keyword=%E4%B9%8C%E5%85%8B%E5%85%B0&pd=video&page_num=0&action_type=pagination&search_id=2023091500044882557399F3D03DE1C304&from=video&cur_tab_title=video"
+https://so.toutiao.com/search?dvpf=pc&source=pagination&keyword=%E4%B9%8C%E5%85%8B%E5%85%B0&pd=video&page_num=1&action_type=pagination&search_id=2023091500044882557399F3D03DE1C304&from=video&cur_tab_title=video
+
+https://so.toutiao.com/search?dvpf=pc&source=pagination&keyword=%E4%B9%8C%E5%85%8B%E5%85%B0&pd=video&page_num=10&action_type=pagination&search_id=20230918231727326A718944D61F5D8B88&from=video&cu=&cur_tab_title=video
+https://so.toutiao.com/search?dvpf=pc&source=pagination&keyword=%E4%B9%8C%E5%85%8B%E5%85%B0&pd=video&page_num=10&action_type=pagination&search_id=20230919004436C587B9EE5787C6D21073&from=video&cu=&cur_tab_title=video
+
+https://so.toutiao.com/search?dvpf=pc&source=pagination&keyword=%E4%B9%8C%E5%85%8B%E5%85%B0&pd=video&page_num=6&action_type=pagination&search_id=2023092001134120D9E099DC0C11A8CF1F&from=video&cur_tab_title=video
+
+
+
+redis使用方法
+     打开redis服务器 .\redis-server.exe --service-install redis.windows.conf --service-name redisserver1 --loglevel verbose
+     打开redis客户端 .\redis-cli
+
+     flushall  清空redis
+     smembers urls    查看该set内容
+     key *    有哪些set
+     type urls   查看该set类型
+     llen movieData  查看set数据大小
+     lrange movieData 0 4  查看前5条样例数据

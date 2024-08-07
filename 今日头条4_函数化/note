@@ -1,0 +1,46 @@
+你可以使用以下步骤将 Selenium 封装成一个函数：
+
+导入所需的库和模块：
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+创建一个函数，接受需要执行的操作和参数作为输入：
+
+def selenium_function(action, *args):
+    # 初始化WebDriver
+    driver = webdriver.Chrome()  # 使用Chrome浏览器，你也可以选择其他浏览器
+
+    # 执行指定的操作
+    if action == "open_url":
+        driver.get(args[0])  # 打开指定的URL
+    elif action == "click":
+        element = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, args[0])))
+        element.click()  # 点击指定的元素
+    elif action == "input_text":
+        element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, args[0])))
+        element.send_keys(args[1])  # 在指定的元素中输入文本
+    # 添加更多的操作...
+
+    # 关闭WebDriver
+    driver.quit()
+调用函数并传递相应的参数：
+
+selenium_function("open_url", "https://www.example.com")
+selenium_function("click", "//button[@id='example']")
+selenium_function("input_text", "//input[@name='example']", "Hello World")
+你可以根据需要在函数中添加更多的操作和参数。记得根据实际情况修改选择器和操作，以适应你的具体需求。
+
+
+
+
+
+
+# 将今日头条的编码转换，转换后可像哔哩哔哩一样得到链接
+import urllib.parse
+str = '%7B%22data%22%3A%7B%22itemId%22%3A%227255936107253400127%22%2C%22groupId%22%3A%227255936107253400127%22%2C%22bizId%22%3A%2216%22%2C%22videoType%22%’
+
+# str = u"%7B%2"
+
+print(urllib.parse.unquote(str))
